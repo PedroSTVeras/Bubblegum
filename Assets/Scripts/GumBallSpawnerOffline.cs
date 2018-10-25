@@ -13,19 +13,15 @@ public class GumBallSpawnerOffline : MonoBehaviour
     float spawnTimer;
     [HideInInspector] public int spawnPositionNumber;
 
-    public Dictionary<int, GumBall> gumBalls = new Dictionary<int, GumBall>();
+    public Dictionary<int, GumBallOffline> gumBalls = new Dictionary<int, GumBallOffline>();
 
-
-    //public bool isServerScene;
-    //float lastMovementUpdate = 0;
-    int maxGumBall = 5;
+    public Transform[] dirPoints;
+    
+    int maxGumBall = 7;
 
     private void Start()
     {
-        //if (isServerScene == true)
-        //{
-        //    server = GameObject.Find("Server").GetComponent<Server>();
-        //}
+        
 
     }
 
@@ -41,16 +37,7 @@ public class GumBallSpawnerOffline : MonoBehaviour
         {
             return;
         }
-        //if (isServerScene == true)
-        //{
-        //    //SendAllGumballPositions(0.06f);
-        //}
-
-        //if (isServerScene == true && gumBalls.Count < maxGumBall)
-        //{
-
-        //    Spawner();
-        //}
+       
 
         if (gumBalls.Count < maxGumBall)
         {
@@ -71,13 +58,16 @@ public class GumBallSpawnerOffline : MonoBehaviour
             {
                 if (gumBalls.ContainsKey(i) == false)
                 {
-                    GumBall gum = Instantiate(gumBallPrefab, spawnPosition[spawnPositionNumber - 1].position, Quaternion.identity).GetComponent<GumBall>();
-                    gum.isServerScene = true;
+                    GumBallOffline gum = Instantiate(gumBallPrefab, spawnPosition[spawnPositionNumber - 1].position, Quaternion.identity).GetComponent<GumBallOffline>();
+                    //gum.savedStartDir = SetStartDir();
+                    Vector3 dir = SetStartDir() - gum.transform.position;
+
+                    dir = dir.normalized;
+                    gum.GetComponent<Rigidbody>().AddForce(dir * 500);
                     gum.gumBallNumber = i;
 
 
-                    string msg = "SPAWN_GUMBALL|" + spawnPosition[spawnPositionNumber - 1].position.x + "|" + spawnPosition[spawnPositionNumber - 1].position.z + "|" + i;
-                    //server.SendAll(msg, server.reliableChannelID);
+                    
 
                     gumBalls.Add(i, gum);
 
@@ -94,66 +84,31 @@ public class GumBallSpawnerOffline : MonoBehaviour
             spawnTimer = 0;
         }
     }
-    public void SpawnGumBall(float posX, float posZ, int gn)
-    {
-        if (gumBalls.ContainsKey(gn) == false)
-        {
-            GumBall gumBall = Instantiate(gumBallPrefab, new Vector3(posX, 2, posZ), Quaternion.identity).GetComponent<GumBall>();
-            gumBall.GetComponent<GumBall>().gumBallNumber = gn;
+  
 
-            gumBalls.Add(gn, gumBall);
+    Vector3 SetStartDir()
+    {
+        //define uma direcao inicial aleatoria
+        if (spawnPositionNumber == 1)
+        {
+
+            return dirPoints[Random.Range(0, 3)].position;
+
+
+        }
+        else if (spawnPositionNumber == 2)
+        {
+            return dirPoints[Random.Range(0, 3)].position;
+        }
+        else if (spawnPositionNumber == 3)
+        {
+            return dirPoints[Random.Range(3, 5)].position;
+        }
+        else
+        {
+            return dirPoints[Random.Range(3, 5)].position;
         }
     }
 
-    //public void SetGumBallTargetPosition(string[] splitData)
-    //{
-
-    //    for (int i = 0; i < splitData.Length - 5; i += 5)
-    //    {
-    //        if (gumBalls.Count > 0)
-    //        {
-
-    //            if (gumBalls.ContainsKey(int.Parse(splitData[4 + i])) == true)
-    //            {
-    //                gumBalls[int.Parse(splitData[4 + i])].targetPosition = new Vector3(float.Parse(splitData[0 + i]), float.Parse(splitData[1 + i]), float.Parse(splitData[2 + i]));
-    //                gumBalls[int.Parse(splitData[4 + i])].targetSpeed = float.Parse(splitData[3 + i]);
-    //                gumBalls[int.Parse(splitData[4 + i])].gumBallNumber = int.Parse(splitData[4 + i]);
-
-
-    //            }
-    //        }
-    //    }
-    //}
-
-
-
-    
-
-    //public string GetAllGumBallPositions()
-    //{
-    //    string msg = "";
-  
-    //    {
-
-
-
-    //        for (int i = 1; i <= maxGumBall; i++)
-    //        {
-    //            if (gumBalls.ContainsKey(i))
-    //            {
-    //                msg += gumBalls[i].transform.position.x.ToString("F1") + "|"
-    //                    + gumBalls[i].transform.position.y.ToString("F1") + "|"
-    //                    + gumBalls[i].transform.position.z.ToString("F1") + "|"
-    //                    + gumBalls[i].currentSpeed.ToString("F1") + "|"
-    //                    + gumBalls[i].gumBallNumber + "|";
-
-    //            }
-
-    //        }
-            
-
-    //    }
-    //    return msg;
-    //}
-
+   
 }

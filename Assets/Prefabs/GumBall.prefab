@@ -23,10 +23,10 @@ GameObject:
   - component: {fileID: 135379717354632954}
   - component: {fileID: 23255618803518960}
   - component: {fileID: 54719986906885104}
-  - component: {fileID: 114437235038371768}
+  - component: {fileID: 114124570526460436}
   m_Layer: 0
   m_Name: GumBall
-  m_TagString: Untagged
+  m_TagString: GumBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1666574345196678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.262459, y: 0.016299492, z: -3.8933136}
+  m_LocalPosition: {x: 2.2839215, y: 1.0762129, z: -5.1047015}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,7 +100,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114437235038371768
+--- !u!114 &114124570526460436
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -108,23 +108,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1666574345196678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04c28ed1e7c243e4c8137f77bd8a08e0, type: 3}
+  m_Script: {fileID: 11500000, guid: dbfdfb8d381913e4fabede3722b2d175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   currentSpeed: 0
-  isServerScene: 0
   gumBallNumber: 0
-  targetSpeed: 0
-  cumBallGhostPrefab: {fileID: 0}
-  targetPosition: {x: 0, y: 0, z: 0}
-  dirPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!135 &135379717354632954
 SphereCollider:
   m_ObjectHideFlags: 1
