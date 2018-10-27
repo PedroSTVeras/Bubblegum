@@ -6,6 +6,7 @@ public class GumBallOffline : MonoBehaviour
 {
    
     GumBallSpawnerOffline gumBallSpawnerOffline;
+    MatchManager matchManager;
     [HideInInspector] public Rigidbody rb;
     float lifeTime;
     float minSpeed = 10f, maxSpeed = 30f;
@@ -16,7 +17,7 @@ public class GumBallOffline : MonoBehaviour
     public void Start()
     {
         rb = GetComponent<Rigidbody>();
-       
+        matchManager = GameObject.Find("MatchManager").GetComponent<MatchManager>();
         gumBallSpawnerOffline = GameObject.Find("GumBallSpawner").GetComponent<GumBallSpawnerOffline>();
        
 
@@ -93,13 +94,15 @@ public class GumBallOffline : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        {
+        
             if (other.tag == "Goal")
             {
+                //matchManager.players[other.GetComponent<Goal>().positionNumber]
+                
                 gumBallSpawnerOffline.gumBalls.Remove(gumBallNumber);
                 Destroy(gameObject);
             }
-        }
+        
     }
 
 
