@@ -9,7 +9,7 @@ public class GumBallOffline : MonoBehaviour
     MatchManager matchManager;
     [HideInInspector] public Rigidbody rb;
     float lifeTime;
-    float minSpeed = 10f, maxSpeed = 30f;
+    float minSpeed = 15f, maxSpeed = 40f;
     public float currentSpeed;
     [HideInInspector] public int gumBallNumber;
 
@@ -81,29 +81,14 @@ public class GumBallOffline : MonoBehaviour
     {
         if (other.tag == "GumBall")
         {
-
             GetComponent<MeshRenderer>().material.color = Color.red;
-
-
         }
 
     }
 
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-
-        
-            if (other.tag == "Goal")
-            {
-                //matchManager.players[other.GetComponent<Goal>().positionNumber]
-                
-                gumBallSpawnerOffline.gumBalls.Remove(gumBallNumber);
-                Destroy(gameObject);
-            }
-        
-    }
+  
 
 
 

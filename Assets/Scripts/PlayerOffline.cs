@@ -14,7 +14,8 @@ public class PlayerOffline : MonoBehaviour
     public float speed;
     public float movementLimit;
     public int score = 20;
-    int thrustForce = 2000;
+    public Text scoreText;
+    int thrustForce = 3000;
 
     public int playerNumber;
 
@@ -39,7 +40,7 @@ public class PlayerOffline : MonoBehaviour
     {
         //serial.Open();//abrir porta
 
-
+        scoreText.text = score.ToString();
         if (wall != null)
         {
             wall.gameObject.SetActive(false);
@@ -52,7 +53,7 @@ public class PlayerOffline : MonoBehaviour
 
     void Update()
     {
-
+        scoreText.text = score.ToString();
 
 
         //h = serial.ReadLine();
