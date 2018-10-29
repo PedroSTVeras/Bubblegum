@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: d24272b97594f9f45a6439a3fb0588b0
+guid: f5eddb681457deb4f9aa2530c532cca4
+timeCreated: 1540469627
 ModelImporter:
-  serializedVersion: 23
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: Body
     100002: Circle
@@ -11,6 +12,56 @@ ModelImporter:
     100010: L_EyeTracker
     100012: Sphere
     100014: Sphere_001
+    100016: Armature
+    100018: armL1
+    100020: ArmL10
+    100022: ArmL11
+    100024: ArmL12
+    100026: ArmL13
+    100028: ArmL14
+    100030: ArmL15
+    100032: ArmL16
+    100034: ArmL2
+    100036: ArmL3
+    100038: ArmL4
+    100040: ArmL5
+    100042: ArmL6
+    100044: ArmL7
+    100046: ArmL8
+    100048: ArmL9
+    100050: Bone
+    100052: Bone_001
+    100054: Bone_002
+    100056: Bone_003
+    100058: Bone_004
+    100060: Bone_005
+    100062: Bone_006
+    100064: Bone_007
+    100066: Bone_008
+    100068: Bone_009
+    100070: Bone_010
+    100072: Bone_011
+    100074: Bone_012
+    100076: Bone_013
+    100078: Bone_014
+    100080: Bone_015
+    100082: Bone_016
+    100084: Bone_017
+    100086: Bone_018
+    100088: Bone_019
+    100090: Bone_020
+    100092: Bone_021
+    100094: Bone_022
+    100096: Bone_023
+    100098: Bone_024
+    100100: Bone_025
+    100102: Bone_026
+    100104: LegL1
+    100106: LegL2
+    100108: LegL3
+    100110: LegL4
+    100112: LegL5
+    100114: LegL6
     400000: Body
     400002: Circle
     400004: EyeFocus
@@ -19,9 +70,65 @@ ModelImporter:
     400010: L_EyeTracker
     400012: Sphere
     400014: Sphere_001
+    400016: Armature
+    400018: armL1
+    400020: ArmL10
+    400022: ArmL11
+    400024: ArmL12
+    400026: ArmL13
+    400028: ArmL14
+    400030: ArmL15
+    400032: ArmL16
+    400034: ArmL2
+    400036: ArmL3
+    400038: ArmL4
+    400040: ArmL5
+    400042: ArmL6
+    400044: ArmL7
+    400046: ArmL8
+    400048: ArmL9
+    400050: Bone
+    400052: Bone_001
+    400054: Bone_002
+    400056: Bone_003
+    400058: Bone_004
+    400060: Bone_005
+    400062: Bone_006
+    400064: Bone_007
+    400066: Bone_008
+    400068: Bone_009
+    400070: Bone_010
+    400072: Bone_011
+    400074: Bone_012
+    400076: Bone_013
+    400078: Bone_014
+    400080: Bone_015
+    400082: Bone_016
+    400084: Bone_017
+    400086: Bone_018
+    400088: Bone_019
+    400090: Bone_020
+    400092: Bone_021
+    400094: Bone_022
+    400096: Bone_023
+    400098: Bone_024
+    400100: Bone_025
+    400102: Bone_026
+    400104: LegL1
+    400106: LegL2
+    400108: LegL3
+    400110: LegL4
+    400112: LegL5
+    400114: LegL6
     2100000: Material_003
     2100002: Material_002
     2100004: unnamed
+    2100006: Material_010
+    2100008: Material_011
+    2100010: Material_013
+    2100012: Material_012
+    2100014: Material_008
+    2100016: Material_009
     2300000: Body
     2300002: Circle
     2300004: Sphere
@@ -36,7 +143,7 @@ ModelImporter:
     4300006: Circle
     7400000: Default Take
     9500000: //RootNode
-    2186277476908879412: ImportLogs
+    13700000: Body
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -56,7 +163,6 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -88,8 +194,6 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -109,6 +213,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
