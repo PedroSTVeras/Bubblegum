@@ -34,6 +34,7 @@ public class GumBallOffline : MonoBehaviour
         lifeTime++;
         if (lifeTime == 60)
         {
+			rb.velocity = new Vector3 (rb.velocity.x, 0, rb.velocity.z);
             GetComponent<Collider>().material.bounciness = 0.95f;
             GetComponent<Collider>().material.bounceCombine = PhysicMaterialCombine.Average;
 

@@ -10,11 +10,12 @@ public class PlayerOffline : MonoBehaviour
 
 
     [HideInInspector] public bool thrusted;
-
+	public int deadZone;
     public float speed;
     public float movementLimit;
     public int score = 20;
     public Text scoreText;
+	public int direction = 1;
     int thrustForce = 3000;
 
     public int playerNumber;
@@ -26,7 +27,7 @@ public class PlayerOffline : MonoBehaviour
     public string h;
    // PlayerControls[] playerControls;
 
-    //SerialPort serial = new SerialPort("COM3", 9600);//definicao de porta
+    SerialPort serial = new SerialPort("COM4", 9600);//definicao de porta
     private void Awake()
     {
 
@@ -38,15 +39,16 @@ public class PlayerOffline : MonoBehaviour
 
     void Start()
     {
-        //serial.Open();//abrir porta
+        serial.Open();//abrir porta
 
         scoreText.text = score.ToString();
-        if (wall != null)
+        if (wall)
         {
             wall.gameObject.SetActive(false);
         }
         //playerControls = new PlayerControls[4];
         //playerControls[0].downKey = KeyCode.D;
+		serial.ReadTimeout = 1;
     }
 
 
@@ -55,19 +57,15 @@ public class PlayerOffline : MonoBehaviour
     {
         scoreText.text = score.ToString();
 
-
-        //h = serial.ReadLine();
-
+		if (serial.IsOpen) {
+			
+			h = serial.ReadLine ();
+		}
 
 
         MoveControls();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-
-            Thrust();
-        }
-
+        
         
         if (gameObject.transform.position.x > movementLimit)
         {
@@ -150,27 +148,55 @@ public class PlayerOffline : MonoBehaviour
     {
         if(playerNumber == 1)
         {
-            if (Input.GetKey(KeyCode.D) )
-            {
+			float lx = Input.GetAxis ("Horizontal");
+            
+            transform.Translate(Time.deltaTime * speed * lx, 0, 0);
+            
 
-                transform.Translate(Time.deltaTime * speed, 0, 0);
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                transform.Translate(Time.deltaTime * -speed, 0, 0);
-            }
+			if (Input.GetButtonDown("Thrust"))
+			{				
+				Thrust();
+			}
+
+
         }
         else if (playerNumber == 2)
         {
-            if (h == "RIGHT")
+			if (int.Parse(h) >= 500 + deadZone)
             {
+				direction = 1;
+                
+            }
+			else if (int.Parse(h) <= 500 - deadZone)
+            {
+				direction = -1;
+                
+            }
+			else 
+			{
+				direction = 0;
 
-                transform.Translate(Time.deltaTime * speed, 0, 0);
-            }
-            if (h == "LEFT")
-            {
-                transform.Translate(Time.deltaTime * -speed, 0, 0);
-            }
+			}
+			int a = int.Parse(h);
+			if (h == "THRUST")
+			{
+				Thrust();
+			}
+			else if (a >= 500 + deadZone && a <= 600) {
+				transform.Translate(Time.deltaTime * speed / 2, 0, 0);
+			}
+			else if (a > 600) {
+				transform.Translate(Time.deltaTime * speed,  0, 0);
+			}
+			else if (a <= 500 - deadZone && a > 400) {
+				transform.Translate(Time.deltaTime * -speed / 2, 0, 0);
+			}
+			else if (a < 400) {
+				transform.Translate(Time.deltaTime * -speed,  0, 0);
+			}
+
+
+
         }
 
 
