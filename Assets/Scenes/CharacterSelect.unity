@@ -600,7 +600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18a0060a6a142e4bbfe0913c011c8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrow: {fileID: 0}
+  arrow: {fileID: 2097928401}
   arrowPos: 0
   lx: 0
 --- !u!4 &1623437739
