@@ -224,6 +224,11 @@ Prefab:
       propertyPath: m_Center.z
       value: -0.35
       objectReference: {fileID: 0}
+    - target: {fileID: 114853677546848184, guid: 0d24dd7bd13c973419dcf59708392760,
+        type: 2}
+      propertyPath: speed
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d24dd7bd13c973419dcf59708392760, type: 2}
   m_IsPrefabParent: 0
@@ -1069,7 +1074,7 @@ Prefab:
     - target: {fileID: 114853677546848184, guid: 0d24dd7bd13c973419dcf59708392760,
         type: 2}
       propertyPath: deadZone
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 135618486719037656, guid: 0d24dd7bd13c973419dcf59708392760,
         type: 2}
@@ -1079,7 +1084,7 @@ Prefab:
     - target: {fileID: 114853677546848184, guid: 0d24dd7bd13c973419dcf59708392760,
         type: 2}
       propertyPath: speed
-      value: 60
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d24dd7bd13c973419dcf59708392760, type: 2}

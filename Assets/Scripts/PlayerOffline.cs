@@ -19,6 +19,7 @@ public class PlayerOffline : MonoBehaviour
     int thrustForce = 3000;
 
     public int playerNumber;
+	public float input;
 
     public List<GumBallOffline> closeGumBalls = new List<GumBallOffline>();
 
@@ -27,11 +28,13 @@ public class PlayerOffline : MonoBehaviour
     public string h;
    // PlayerControls[] playerControls;
 
-    SerialPort serial = new SerialPort("COM4", 9600);//definicao de porta
+	SerialPort serial;
     private void Awake()
     {
 
-
+		if (playerNumber == 2) {
+			serial = new SerialPort("COM4", 9600);//definicao de porta
+		}
     }
 
 
@@ -39,7 +42,10 @@ public class PlayerOffline : MonoBehaviour
 
     void Start()
     {
-        serial.Open();//abrir porta
+		if (playerNumber == 2) {
+        	serial.Open();//abrir porta
+			serial.ReadTimeout = 1;
+		}
 
         scoreText.text = score.ToString();
         if (wall)
@@ -48,7 +54,7 @@ public class PlayerOffline : MonoBehaviour
         }
         //playerControls = new PlayerControls[4];
         //playerControls[0].downKey = KeyCode.D;
-		serial.ReadTimeout = 1;
+
     }
 
 
@@ -57,7 +63,7 @@ public class PlayerOffline : MonoBehaviour
     {
         scoreText.text = score.ToString();
 
-		if (serial.IsOpen) {
+		if (playerNumber == 2 && serial.IsOpen) {
 			
 			h = serial.ReadLine ();
 		}
@@ -146,58 +152,35 @@ public class PlayerOffline : MonoBehaviour
 
     public void MoveControls()
     {
-        if(playerNumber == 1)
-        {
+		if (playerNumber == 1) {
 			float lx = Input.GetAxis ("Horizontal");
             
-            transform.Translate(Time.deltaTime * speed * lx, 0, 0);
+			transform.Translate (Time.deltaTime * speed * lx, 0, 0);
             
 
-			if (Input.GetButtonDown("Thrust"))
-			{				
-				Thrust();
+			if (Input.GetButtonDown ("Thrust")) {				
+				Thrust ();
 			}
 
 
-        }
-        else if (playerNumber == 2)
-        {
-			if (int.Parse(h) >= 500 + deadZone)
-            {
+		} else if (playerNumber == 2) {
+			string[] split = h.Split (',');
+
+			input = (float.Parse (split [0]) / 510) - 1;
+
+			//Debug.Log (input);
+			/*(if (input > 0.1f) {
 				direction = 1;
-                
-            }
-			else if (int.Parse(h) <= 500 - deadZone)
-            {
+			} else if (input < -0.1f) {
 				direction = -1;
-                
-            }
-			else 
-			{
+			} else {
 				direction = 0;
 
-			}
-			int a = int.Parse(h);
-			if (h == "THRUST")
-			{
-				Thrust();
-			}
-			else if (a >= 500 + deadZone && a <= 600) {
-				transform.Translate(Time.deltaTime * speed / 2, 0, 0);
-			}
-			else if (a > 600) {
-				transform.Translate(Time.deltaTime * speed,  0, 0);
-			}
-			else if (a <= 500 - deadZone && a > 400) {
-				transform.Translate(Time.deltaTime * -speed / 2, 0, 0);
-			}
-			else if (a < 400) {
-				transform.Translate(Time.deltaTime * -speed,  0, 0);
-			}
 
-
-
-        }
+			}*/
+			if(input < -0.05f || input > 0.05f)
+			transform.Translate (Time.deltaTime * speed * input, 0, 0);
+		}
 
 
     }
