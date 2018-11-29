@@ -27,7 +27,7 @@ public class GumBallSpawnerOffline : MonoBehaviour
 
     private void Update()
     {
-
+		
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -56,6 +56,14 @@ public class GumBallSpawnerOffline : MonoBehaviour
 
             for (int i = 1; i < maxGumBall + 1; i++)
             {
+				//if (gumBalls[i].transform.position.y <= -5) {
+
+					//Destroy (gumBalls [i].gameObject);
+
+					//gumBalls.Remove (i);
+					//Debug.Log ("aaaaa");
+					//break;
+				//}
                 if (gumBalls.ContainsKey(i) == false)
                 {
                     GumBallOffline gum = Instantiate(gumBallPrefab, spawnPosition[spawnPositionNumber - 1].position, Quaternion.identity).GetComponent<GumBallOffline>();
@@ -75,6 +83,17 @@ public class GumBallSpawnerOffline : MonoBehaviour
                     break;
                 }
             }
+
+			for (int i = 1; i < maxGumBall + 1; i++) {
+				if (gumBalls[i]) {
+
+				//Destroy (gumBalls [i].gameObject);
+
+				//gumBalls.Remove (i);
+					Debug.Log (gumBalls[i].name);
+				break;
+				}
+			}
 
             if (spawnPositionNumber == 4)
             {
@@ -109,6 +128,7 @@ public class GumBallSpawnerOffline : MonoBehaviour
             return dirPoints[Random.Range(3, 5)].position;
         }
     }
+
 
    
 }

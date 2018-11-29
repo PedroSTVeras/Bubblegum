@@ -46,7 +46,7 @@ public class PlayerOffline : MonoBehaviour
     {
 		if (playerNumber == 2) {
         	serial.Open();//abrir porta
-			serial.ReadTimeout = 1;
+			//serial.ReadTimeout = 1;
 		}
 
         scoreText.text = score.ToString();
@@ -189,6 +189,9 @@ public class PlayerOffline : MonoBehaviour
 			}*/
 			if(input < -0.05f || input > 0.05f)
 			transform.Translate (Time.deltaTime * speed * input, 0, 0);
+
+			if (split [1] == "THRUST")
+				Thrust ();
 		}
 
 
