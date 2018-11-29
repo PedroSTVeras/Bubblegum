@@ -12,21 +12,14 @@ public class GumBallOffline : MonoBehaviour
     float minSpeed = 15f, maxSpeed = 40f;
     public float currentSpeed;
     [HideInInspector] public int gumBallNumber;
-
+    bool stopY = false;
     
     public void Start()
     {
         rb = GetComponent<Rigidbody>();
         matchManager = GameObject.Find("MatchManager").GetComponent<MatchManager>();
         gumBallSpawnerOffline = GameObject.Find("GumBallSpawner").GetComponent<GumBallSpawnerOffline>();
-       
-
-        
-
-        
-
-
-
+                                                               
     }
 
     public void Update()
@@ -42,7 +35,6 @@ public class GumBallOffline : MonoBehaviour
 
         }
 
-
         currentSpeed = rb.velocity.magnitude;
         //limite de velocidade
         if (rb.velocity.magnitude > maxSpeed)
@@ -54,45 +46,33 @@ public class GumBallOffline : MonoBehaviour
             rb.velocity = rb.velocity.normalized * minSpeed;
         }
 
-
-
-
-
-
-
-
-
-    }
-
-
+        if (stopY)
+        {
+            if (transform.position.y >= 1.5f)
+            {
+                transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
+            }
+        }     
+    }     
 
     private void OnCollisionEnter(Collision collision)
     {
 
         if (collision.collider.tag == "GumBall")
-        {
-
-            GetComponent<MeshRenderer>().material.color = Color.red;
-
+        {                                                              
+            GetComponent<MeshRenderer>().material.color = Color.red;       
         }
 
-
+        if (collision.collider.tag == "Floor")
+        {
+            stopY = true;
+        }           
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "GumBall")
         {
             GetComponent<MeshRenderer>().material.color = Color.red;
-        }
-
+        }          
     }
-
-
-
-  
-
-
-
-
-
 }

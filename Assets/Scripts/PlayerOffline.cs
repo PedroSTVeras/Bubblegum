@@ -23,6 +23,8 @@ public class PlayerOffline : MonoBehaviour
 
     public List<GumBallOffline> closeGumBalls = new List<GumBallOffline>();
 
+    public ParticleSystem particle;
+    public GameObject panel;
 
 
     public string h;
@@ -71,6 +73,11 @@ public class PlayerOffline : MonoBehaviour
 
         MoveControls();
 
+        if(score <= 0)
+        {
+            Time.timeScale = 0;
+            panel.SetActive(true);
+        }
         
         
         if (gameObject.transform.position.x > movementLimit)
@@ -88,6 +95,8 @@ public class PlayerOffline : MonoBehaviour
 
     public void Thrust()
     {
+        particle.Play();        
+
         for (int i = 0; i < closeGumBalls.Count; i++)
         {
 

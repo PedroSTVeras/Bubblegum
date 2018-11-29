@@ -21,7 +21,8 @@ public class MainMenu : MonoBehaviour {
         button[i].transform.localScale = new Vector3(1, 1, 1);
     }
     public void EnterOfflineMatch(string sceneName)
-    {
+    {                     
+        Time.timeScale = 1;
         SceneManager.LoadScene(sceneName);
     }
 }
