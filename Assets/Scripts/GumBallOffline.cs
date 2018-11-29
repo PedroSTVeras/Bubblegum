@@ -66,7 +66,8 @@ public class GumBallOffline : MonoBehaviour
         if (collision.collider.tag == "Floor")
         {
             stopY = true;
-        }           
+        }    
+
     }
     private void OnTriggerStay(Collider other)
     {
@@ -75,4 +76,15 @@ public class GumBallOffline : MonoBehaviour
             GetComponent<MeshRenderer>().material.color = Color.red;
         }          
     }
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Out")
+		{
+			gumBallSpawnerOffline.gumBalls.Remove (gumBallNumber);
+			Destroy (gameObject);
+		}         
+	}
+
+
 }

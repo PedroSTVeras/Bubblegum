@@ -7,6 +7,7 @@ TagManager:
   - GumBall
   - Goal
   - Floor
+  - Out
   layers:
   - Default
   - TransparentFX
